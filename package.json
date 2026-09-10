@@ -1,0 +1,45 @@
+{
+  "name": "medclinic-api",
+  "version": "1.0.0",
+  "description": "Repositório dedicado ao desenvolvimento de um mini projeto avaliativo para o curso de Back-End com Noje.js do Senai (Modulo 02 - Programa SC Tec).",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunaFraga-0/medClinic-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BrunaFraga-0/medClinic-api/issues"
+  },
+  "homepage": "https://github.com/BrunaFraga-0/medClinic-api#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.2",
+    "@types/pg": "^8.23.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+  "node": ">=24"
+  }
+}
