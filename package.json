@@ -1,5 +1,5 @@
 {
-  "name": "medclinic-api",
+  "name": "medClinic-api",
   "version": "1.0.0",
   "description": "Repositório dedicado ao desenvolvimento de um mini projeto avaliativo para o curso de Back-End com Noje.js do Senai (Modulo 02 - Programa SC Tec).",
   "main": "dist/server.js",
