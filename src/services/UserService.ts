@@ -2,6 +2,7 @@ import { UserRepository } from '../repositories/UserRepository';
 import { CreateUserDto } from '../dtos/CreateUserDto';
 import { ResponseUserDto } from '../dtos/ResponseUserDto';
 import { hashPassword } from '../utils/PasswordHash';
+import { AppError } from '../error/AppError';
 
 export class UserService {
 
@@ -10,7 +11,7 @@ export class UserService {
     async createUser(data: CreateUserDto): Promise<ResponseUserDto> {
         const existEmail = await this.userRepository.findByEmail(data.email);
         if (existEmail) {
-            throw new Error('Já existe um usuário com esse email');
+            throw new AppError('Já existe um usuáriocadastrado com esse email', 409);
         };
 
         const hashedPassword = await hashPassword(data.password);
