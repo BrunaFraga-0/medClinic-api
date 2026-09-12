@@ -4,11 +4,15 @@ import express from 'express';
 import { AppDataSource } from './database/data-source';
 import cors from 'cors';
 import userRoutes from './routes/user.routes';
+import { errorMiddleware } from './middlewares/errorMiddleware';
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(userRoutes);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3333;
 
