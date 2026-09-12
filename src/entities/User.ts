@@ -20,7 +20,7 @@ export class User{
     password!: string
 
     @Column({ type: 'enum', enum: UserRole, default: UserRole.ATENDENTE })
-    role!: UserRole
+    role?: UserRole
 
     @CreateDateColumn({name: 'created_At', type: 'timestamp', default: () => 'now()' })
     createdAt!: Date 
