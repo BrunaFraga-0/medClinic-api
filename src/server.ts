@@ -3,10 +3,12 @@ import 'dotenv/config';
 import express from 'express';
 import { AppDataSource } from './database/data-source';
 import cors from 'cors';
+import userRoutes from './routes/user.routes';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(userRoutes);
 
 const PORT = process.env.DB_PORT || 3000;
 
