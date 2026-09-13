@@ -15,9 +15,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(authRoutes);
 
-//app.use(authMiddleware);
 app.use(errorMiddleware);
-
 
 const PORT = process.env.PORT || 3333;
 
