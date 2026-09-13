@@ -7,7 +7,10 @@ export function validateDto (dtoClass: any) {
     return async (req: Request, res: Response, next: NextFunction) => {
         const dto = plainToInstance(dtoClass, req.body);
 
-        const errors = await validate(dto);
+        const errors = await validate(dto, {
+            whitelist: true,
+            forbidNonWhitelisted: true
+        });
 
         if (errors.length > 0) {
             const validationErrors = 
