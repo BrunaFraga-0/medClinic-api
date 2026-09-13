@@ -1,6 +1,6 @@
 import { UserRole } from '../entities/User';
 
-export class ResponseUserDto {
+export class UserResponseDto {
     id!: string;
 
     name!: string;

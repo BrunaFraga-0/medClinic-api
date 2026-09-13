@@ -5,7 +5,7 @@ import { AppError } from '../error/AppError';
 declare global {
     namespace Express {
         interface Request {
-            usuario?: TokenPayload;
+            user?: TokenPayload;
         }
     }
 };
@@ -25,7 +25,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
 
     try{
         const payload = verificarToken(token);
-        req.usuario = payload;
+        req.user = payload;
         return next();
 
     }catch(err){
