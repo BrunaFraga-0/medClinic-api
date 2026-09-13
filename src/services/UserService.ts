@@ -1,6 +1,6 @@
 import { UserRepository } from '../repositories/UserRepository';
 import { CreateUserDto } from '../dtos/CreateUserDto';
-import { ResponseUserDto } from '../dtos/ResponseUserDto';
+import { UserResponseDto } from '../dtos/UserResponseDto';
 import { hashPassword } from '../utils/PasswordHash';
 import { AppError } from '../error/AppError';
 
@@ -8,10 +8,10 @@ export class UserService {
 
     constructor(private userRepository = UserRepository) {}
 
-    async createUser(data: CreateUserDto): Promise<ResponseUserDto> {
+    async createUser(data: CreateUserDto): Promise<UserResponseDto> {
         const existEmail = await this.userRepository.findByEmail(data.email);
         if (existEmail) {
-            throw new AppError('Já existe um usuáriocadastrado com esse email', 409);
+            throw new AppError('Já existe um usuário cadastrado com esse email', 409);
         };
 
         const hashedPassword = await hashPassword(data.password);
@@ -25,7 +25,7 @@ export class UserService {
 
         const savedUser = await this.userRepository.save(newUser);
 
-        const responseUser: ResponseUserDto = {
+        const responseUser: UserResponseDto = {
             id: savedUser.id,
             name: savedUser.name,
             email: savedUser.email,
@@ -34,5 +34,22 @@ export class UserService {
         };
 
         return responseUser;
+    };
+
+    async getUserById(id: string): Promise<UserResponseDto> {
+        const existId = await this.userRepository.findById(id);
+        if (!existId) {
+            throw new AppError('Usuário não encontrado', 404);
+        };
+
+        const responseUserId: UserResponseDto = {
+            id: existId.id,
+            name: existId.name,
+            email: existId.email,
+            role: existId.role!,
+            createdAt: existId.createdAt
+        };
+
+        return responseUserId;
     };
 };
