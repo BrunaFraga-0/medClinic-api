@@ -5,8 +5,8 @@ import { AppDataSource } from './database/data-source';
 import cors from 'cors';
 import userRoutes from './routes/user.routes';
 import { errorMiddleware } from './middlewares/errorMiddleware';
-import { authMiddleware } from './middlewares/authMiddleware';
 import authRoutes from './routes/auth.routes';
+import adminRoutes from './routes/admin.routes';
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(userRoutes);
 app.use(authRoutes);
+app.use(adminRoutes);
 
 app.use(errorMiddleware);
 
