@@ -22,6 +22,6 @@ export class User{
     @Column({ type: 'enum', enum: UserRole, default: UserRole.ATENDENTE })
     role?: UserRole
 
-    @CreateDateColumn({name: 'created_At', type: 'timestamp', default: () => 'now()' })
+    @CreateDateColumn({name: 'created_at', type: 'timestamp', default: () => 'now()' })
     createdAt!: Date 
 };

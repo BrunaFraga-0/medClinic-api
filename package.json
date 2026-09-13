@@ -8,6 +8,9 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm -- migration:generate src/database/migrations/CreateUserTable -d src/database/data-source.ts",
+    "migration:run": "npm run typeorm -- migration:run -d src/database/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/database/data-source.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
