@@ -1,11 +1,13 @@
-# MedClinic API
+# 🏥 MedClinic API
 
 ## Descrição do Projeto
 A MedClinic API é um sistema back-end desenvolvido para o gerenciamento de uma clínica médica de pequeno porte, como parte do Programa SCTec (SENAI/SC). 
 
 Nesta **primeira etapa**, o escopo do projeto foca exclusivamente na construção da base de acesso seguro ao sistema. Foram implementadas as funcionalidades de cadastro de usuários, autenticação baseada em tokens (JWT) e controle de autorização baseado em funções (RBAC - Role-Based Access Control). Os módulos de domínio da clínica (médicos, pacientes, consultas) serão integrados em etapas futuras sobre esta estrutura.
 
-## Tecnologias Utilizadas
+---
+
+## 🛠️ Tecnologias Utilizadas
 
 * **Node.js** — 24.14.1
 * **TypeScript** — 6.0.3
@@ -19,13 +21,15 @@ Nesta **primeira etapa**, o escopo do projeto foca exclusivamente na construçã
 * **Dotenv** — 17.4.2
 * **CORS** — 2.8.6 
 
-## Requisitos para Execução
+---
+
+## 📦 Requisitos para Execução
 Para executar o projeto localmente, é necessário ter instalado:
 * **Node.js** — versão 24 ou superior
 * **PostgreSQL** — versão 18 ou superior
 * **Git** — para clonar o repositório
 
-## Configuração do Banco de Dados e Variáveis de Ambiente
+## ⚙️ Configuração do Banco de Dados e Variáveis de Ambiente
 Na raiz do projeto, crie um arquivo `.env` baseando-se no arquivo `.env.example` disponibilizado. Preencha as variáveis com as credenciais do seu banco de dados PostgreSQL e uma chave secreta para o JWT.
 
 Exemplo de configuração do `.env`:
@@ -47,7 +51,7 @@ JWT_SECRET=sua_chave_secreta_super_segura
 JWT_EXPIRES_IN=1800s
 ```
 
-## Instalação e Execução da Aplicação
+## 🚀 Instalação e Execução da Aplicação
 
 1. **Clone o repositório:**
    ```bash
@@ -71,9 +75,9 @@ Antes de rodar a aplicação, abra o seu gerenciador do PostgreSQL (como pgAdmin
 
 Para criar a tabela de usuários no banco de dados, rode o script de migrations configurado no projeto:
 
-    ```bash
-    npm run migration:run
-    ```
+  ```bash
+  npm run migration:run
+  ```
 
 6. **Inicie o servidor em ambiente de desenvolvimento:**
    ```bash
@@ -81,7 +85,9 @@ Para criar a tabela de usuários no banco de dados, rode o script de migrations 
    ```
    *O servidor iniciará na porta configurada no `.env` (ex: http://localhost:3000).*
 
-## Arquitetura do Projeto e Estrutura de Pastas
+---
+
+## 🗂️ Arquitetura do Projeto e Estrutura de Pastas
 O projeto segue uma **arquitetura em camadas, inspirada no padrão MVC**, visando a separação de responsabilidades e facilitando a manutenção e a escalabilidade para as próximas etapas.
 
 ```text
@@ -141,7 +147,8 @@ medClinic-api/
 └── tsconfig.json                        # Configuração do TypeScript
 ```
 
-## Perfis de Acesso Disponíveis (RBAC)
+--- 
+## 👥 Perfis de Acesso Disponíveis (RBAC)
 O sistema possui controle de acesso baseado em funções, suportando os seguintes perfis:
 * **Administrador (`ADMIN`)**: possui acesso às rotas administrativas e aos recursos restritos da API.
 * **Atendente (`ATENDENTE`)**: Possui acesso operacional restrito, não podendo acessar rotas exclusivas de administração.
@@ -152,7 +159,7 @@ O sistema possui controle de acesso baseado em funções, suportando os seguinte
 
 ### 1. Cadastro de Usuário
 Cria um novo usuário no sistema com a senha criptografada.
-* **Rota:** `/users`
+* **Rota:** `/users/register`
 * **Método:** `POST`
 * **Parâmetros (Body JSON):**
   ```json
@@ -239,4 +246,31 @@ Endpoint exclusivo para testar a autorização de perfil (RBAC). Só pode ser ac
   ```
 
 ---
+
+## Validações e Tratamento de Erros
+
+A API utiliza códigos HTTP para indicar o resultado das operações e possui tratamento centralizado de erros através de `AppError` e `errorMiddleware`.
+
+| Status | Significado | Utilizado para |
+|---|---|---|
+| **400 Bad Request** | Requisição inválida | Dados de entrada que não passam pelas validações dos DTOs, como campos obrigatórios ausentes ou formato inválido |
+| **401 Unauthorized** | Não autenticado | Token JWT ausente ou inválido, tratado pelo `authMiddleware`, e credenciais incorretas no login |
+| **403 Forbidden** | Acesso proibido | Usuário autenticado, mas sem permissão para acessar determinado recurso, tratado pelo `roleMiddleware` |
+| **404 Not Found** | Recurso não encontrado | Usuário não encontrado pelo identificador informado |
+| **409 Conflict** | Conflito | Tentativa de cadastrar um usuário utilizando um e-mail que já está cadastrado |
+| **500 Internal Server Error** | Erro interno do servidor | Erros inesperados não tratados especificamente pela aplicação |
+
+---
+
+## 🎥 Demonstração
+
+Vídeo de apresentação do projeto, demonstrando a estrutura da API,
+autenticação e autorização com JWT, validações e tratamento de erros.
+
+▶️ [Assistir ao vídeo no YouTube](https://www.youtube.com/watch?v=aSW4SVzzP7Y)
+
+---
+
 *Desenvolvido por Bruna Fraga*
+
+---
