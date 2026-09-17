@@ -1,5 +1,5 @@
 import { UserRepository } from '../repositories/UserRepository';
-import { CreateUserDto } from '../dtos/CreateUserDto';
+import { UserRegisterDto } from '../dtos/UserRegisterDto';
 import { UserResponseDto } from '../dtos/UserResponseDto';
 import { hashPassword } from '../utils/PasswordHash';
 import { AppError } from '../error/AppError';
@@ -8,7 +8,7 @@ export class UserService {
 
     constructor(private userRepository = UserRepository) {}
 
-    async createUser(data: CreateUserDto): Promise<UserResponseDto> {
+    async registerUser(data: UserRegisterDto): Promise<UserResponseDto> {
         try{
             const existEmail = await this.userRepository.findByEmail(data.email);
             if (existEmail) {

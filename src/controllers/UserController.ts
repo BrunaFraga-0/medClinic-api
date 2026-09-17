@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/UserService';
-import { CreateUserDto } from '../dtos/CreateUserDto';
+import { UserRegisterDto } from '../dtos/UserRegisterDto';
 import { UserResponseDto } from '../dtos/UserResponseDto';
 
 export class UserController {
     constructor(private userService: UserService) {};
     
-    async createUser(req: Request, res: Response): Promise<Response> {
-        const createUserDto: CreateUserDto = req.body;
+    async registerUser(req: Request, res: Response): Promise<Response> {
+        const registerUserDto: UserRegisterDto = req.body;
 
-        const responseUserDto: UserResponseDto = await this.userService.createUser(createUserDto);
+        const responseUserDto: UserResponseDto = await this.userService.registerUser(registerUserDto);
 
         return res.status(201).json(responseUserDto);
     };

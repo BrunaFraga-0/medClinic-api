@@ -1,7 +1,7 @@
 import { IsString, IsEmail, IsEnum, IsNotEmpty, MaxLength, IsOptional, IsStrongPassword } from 'class-validator';
 import { UserRole } from '../entities/User';
 
-export class CreateUserDto {
+export class UserRegisterDto {
     @IsNotEmpty({ message: 'O campo "name" é obrigatório'})
     @IsString({ message: 'O campo "name" deve ser um texto' })
     @MaxLength(100, { message: 'O campo "name" deve ter no máximo 100 caracteres' })
